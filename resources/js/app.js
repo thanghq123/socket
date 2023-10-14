@@ -12,7 +12,8 @@ import io from 'socket.io-client';
 window.Echo = new Echo({
     broadcaster: 'socket.io',
     // host: 'http://localhost' + ':6001',
-    host: 'http://103.163.217.193' + ':6001',
+    // host: 'http://103.163.217.193' + ':6001',
+    host: window.location.hostname + ':6001',
     client: io,
 });
 
