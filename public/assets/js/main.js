@@ -2,6 +2,7 @@ let userprogess = [];
 
 // let examCode = '2954SJNV';
 let examCode = prompt("Nhập mã đề thi", "2954SJNV") ?? '';
+document.querySelector("#examCode").textContent = examCode;
 let exam;
 
 async function getExam(code) {
