@@ -1,4 +1,3 @@
-let getResultUrl = {{ env('APP_URL') . '/get-result/' }};
 let userprogess = [];
 // let examCode = '2954SJNV';
 let examCode = prompt("Nhập mã đề thi", "2954SJNV") ?? '';
