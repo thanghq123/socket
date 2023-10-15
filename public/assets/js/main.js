@@ -178,7 +178,7 @@ function updateTable() {
 ${index+1}
 </th>
 <td class="px-6 py-4">
-${user.name}
+${user.user.name}
 </td>
 <td class="px-6 py-4">
 ${user.point}
