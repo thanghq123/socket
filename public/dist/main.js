@@ -19308,8 +19308,8 @@ __webpack_require__.r(__webpack_exports__);
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_2__["default"]({
   broadcaster: 'socket.io',
   // host: 'http://localhost' + ':6001',
-  // host: 'http://103.163.217.193' + ':6001',
-  host: window.location.hostname + ':6001',
+  host: 'http://103.163.217.193' + ':6001',
+  // host: window.location.hostname + ':6001',
   client: socket_io_client__WEBPACK_IMPORTED_MODULE_3__
 });
 
