@@ -160,7 +160,7 @@ function updateTable() {
       let userClass = 'bg-white border-b';
 
       if (index === 0) {
-        if (array.some((u, i) => i > index && user.total_point < u.total_point)) {
+        if (array.some((u, i) => i > index && user.point < u.point)) {
           userClass += ' errors-row';
           return;
         }
@@ -169,7 +169,7 @@ function updateTable() {
         userClass += ' errors-row';
         lastSuccessScore = user.point; // cập nhật điểm thành công cao nhất
         // update(arr, id, updatedData)
-      } else if (array.some((u, i) => i < index && user.total_point < u.total_point)) {
+      } else if (array.some((u, i) => i < index && user.point < u.point)) {
         userClass += ' success-row';
       }
       return `
@@ -181,7 +181,7 @@ ${index+1}
 ${user.name}
 </td>
 <td class="px-6 py-4">
-${user.total_point}
+${user.point}
 </td>
 <td class="px-6 py-4 w-[50%]">
     <div class="w-[100%] bg-[#f0f0f0] rounded-lg h-12 inline-flex">
