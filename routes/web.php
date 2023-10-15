@@ -44,17 +44,7 @@ Route::get('result', function () {
     return view('result');
 });
 
-Route::get('get-result/{code}', function (Request $request, $code) {
-    $data = \App\Models\TmpQuizResult::query()
-        ->selectRaw('tmp_quiz_results.user_id, users.name, SUM(time) as total_time, SUM(point) as total_point, SUM(case when point = 0 then 1 else 0 end) as errors')
-        ->join('users', 'users.id', '=', 'tmp_quiz_results.user_id')
-        ->where('code', $code)
-        ->groupBy('user_id')
-        ->get();
 
-    return $data;
-//    return $results;
-})->name('get-result');
 
 Route::get('live-score', function () {
     $randomScore = random_int(1, 10);

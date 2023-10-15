@@ -5,19 +5,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Quiz Live Score</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('assets/style/style.css') }}">
     <script src="{{ asset('dist/main.js') }}"></script>
 </head>
 <body>
-<div class="container min-h-screen pb-10 bg-[url('./assets/gif/bg.gif')]">
+<div class="container min-h-screen pb-10 bg-[url('./assets/gif/bg.gif')] my-0 mx-auto">
     <div class="content-top grid grid-cols-3 border-gray-300  h-[50px] py-3">
         <div class="text-left ml-3 mt-2">
-            <a href="#"
-               class="py-2.5 px-5 mr-2 mb-2 text-sm font-bold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-300 focus:z-10 focus:ring-4 focus:ring-gray-200">
-                Quizz</a>
+{{--            <a href="#"--}}
+{{--               class="py-2.5 px-5 mr-2 mb-2 text-sm font-bold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-300 focus:z-10 focus:ring-4 focus:ring-gray-200">--}}
+{{--                <span id="examName">Quizz</span></a>--}}
         </div>
         <div class="text-center mx-auto mt-2">
             <div class="bg-white w-[100%] float-left mt-[-10px]
@@ -38,34 +38,34 @@
             </div>
         </div>
         <div class="text-right mr-3 mt-2">
-            <a href="#"
-               class="py-2.5 px-5 mr-2 mb-2 text-sm font-bold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-300 focus:z-10 focus:ring-4 focus:ring-gray-200">
-                Tạm dừng</a>
-            <a href="#"
-               class="py-2.5 px-5 mr-2 mb-2 text-sm font-bold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-300 focus:z-10 focus:ring-4 focus:ring-gray-200">
-                Kết thúc</a>
+{{--            <a href="#"--}}
+{{--               class="py-2.5 px-5 mr-2 mb-2 text-sm font-bold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-300 focus:z-10 focus:ring-4 focus:ring-gray-200">--}}
+{{--                Tạm dừng</a>--}}
+{{--            <a href="#"--}}
+{{--               class="py-2.5 px-5 mr-2 mb-2 text-sm font-bold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-300 focus:z-10 focus:ring-4 focus:ring-gray-200">--}}
+{{--                Kết thúc</a>--}}
         </div>
     </div>
 
-    <div id="content-progess" class="content-main bg-gray-700 rounded-lg h-12 w-[80%] mx-auto mt-[7%] flex flex-col-3">
-        <div class="w-[50%] rounded-lg h-12 dark:bg-gray-700">
-            <div id="progressBar1" class="bg-green-400 h-10 rounded-lg mt-1 ml-1" style="width: 0"></div>
-        </div>
-        <div class="rounded-full w-20 z-0 h-20 bg-gray-50 mt-[-16px] ring-8 ring-gray-300">
-            <p class="font-semibold text-xs justify-center mt-5 mx-2 text-center">
-                <strong id="percentage1" class="text-[17px]">0%</strong><br>
-                độ chính xác</p>
-        </div>
-        <div class="w-[50%] rounded-lg h-12 dark:bg-gray-700">
-            <div id="progressBar2" class="bg-red-400 h-10 rounded-lg mt-1 mr-1 float-right" style="width: 0"></div>
-        </div>
-    </div>
+{{--    <div id="content-progess" class="content-main bg-gray-700 rounded-lg h-12 w-[80%] mx-auto mt-[7%] flex flex-col-3">--}}
+{{--        <div class="w-[50%] rounded-lg h-12 dark:bg-gray-700">--}}
+{{--            <div id="progressBar1" class="bg-green-400 h-10 rounded-lg mt-1 ml-1" style="width: 0"></div>--}}
+{{--        </div>--}}
+{{--        <div class="rounded-full w-20 z-0 h-20 bg-gray-50 mt-[-16px] ring-8 ring-gray-300">--}}
+{{--            <p class="font-semibold text-xs justify-center mt-5 mx-2 text-center">--}}
+{{--                <strong id="percentage1" class="text-[17px]">0%</strong><br>--}}
+{{--                độ chính xác</p>--}}
+{{--        </div>--}}
+{{--        <div class="w-[50%] rounded-lg h-12 dark:bg-gray-700">--}}
+{{--            <div id="progressBar2" class="bg-red-400 h-10 rounded-lg mt-1 mr-1 float-right" style="width: 0"></div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <div class="relative overflow-x-auto mt-[8%] w-[80%] mx-auto rounded-lg">
         <table class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase">
             <tr class="bg-gray-100">
-                <th scope="col" class="text-sm px-5 py-2.5" colspan="4">
+                <th scope="col" class="text-sm px-5 py-2.5" colspan="5">
                     <div class="text-center inline-flex text-1xl items-center">
                         <svg class="w-5 h-5 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                              fill="currentColor" viewBox="0 0 20 19">
@@ -84,6 +84,9 @@
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Tên
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Tổng thời gian làm bài
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Điểm
@@ -166,8 +169,8 @@
     </div>
 </div>
 <script>
-    let getResultUrl = '{{ env('APP_URL') . '/get-result/' }}';
-    console.log(getResultUrl);
+    let getResultUrl = '{{ env('APP_URL') . '/api/get-result/' }}';
+    let getExamUrl = '{{ env('APP_URL') . '/api/exam/' }}';
 </script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>

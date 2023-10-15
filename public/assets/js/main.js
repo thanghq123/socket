@@ -1,26 +1,67 @@
 let userprogess = [];
+
 // let examCode = '2954SJNV';
 let examCode = prompt("Nhập mã đề thi", "2954SJNV") ?? '';
-document.querySelector("#examCode").textContent = examCode;
+let exam;
+
+async function getExam(code) {
+    let response = await window.axios.get(getExamUrl + code);
+    // console.log(response);
+    if (response.data.status) {
+        return response.data.data;
+    }
+    return null;
+}
+
+(async function () {
+    while (!exam) {
+        exam = await getExam(examCode);
+        if (!exam) {
+            examCode = prompt("Mã đề thi không hợp lệ. Nhập lại mã đề thi", "2954SJNV") ?? '';
+        }
+    }
+    document.querySelector("#examCode").textContent = examCode;
+    // document.querySelector("#examName").textContent = exam.name;
+    getResults();
+    setInterval(getResults, 5000);
+})();
+
 let interval;
-const getResults = () => {
-    window.axios.get(getResultUrl + examCode)
-        .then(function (response) {
+const getResults = (users = undefined) => {
+    if (!users) {
+        window.axios.get('https://quiz.upstore.top/api/live_score/refesh/' + examCode)
+            .then(function (response) {
 
-            // clearInterval(interval);
+                clearInterval(interval);
 
-            userprogess = response.data;
+                return window.axios.post(getResultUrl + examCode, {
+                    data: response.data,
+                })
 
-            document.querySelector("#totalUser").textContent = userprogess.length;
-            updateTable();
-            // Cập nhật bảng mỗi giây
-            interval = setInterval(updateTable, 1000);
-            console.log(userprogess);
-        })
+            })
 
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(response => {
+                // console.log(response.data);
+                userprogess = response.data;
+                clearInterval(interval)
+                errorssort = 0;
+                document.querySelector("#totalUser").textContent = userprogess.length;
+                updateTable();
+                // Cập nhật bảng mỗi giây
+                interval = setInterval(updateTable, 1000);
+                // console.log(userprogess);
+            })
+
+            .catch(function (error) {
+                clearInterval(interval);
+                console.log(error);
+            });
+    } else {
+        userprogess = users;
+        updateTable();
+        // Cập nhật bảng mỗi giây
+        interval = setInterval(updateTable, 1000);
+    }
 }
 
 const contentMain = document.querySelector("#content-progess");
@@ -58,12 +99,13 @@ function setProgress(accuracy) {
 }
 
 // Set the accuracy to 10%
-setProgress(20);
+// setProgress(20);
 
 let totsort = 0;
 let errorssort = 0;
 
 function updateTable() {
+    document.querySelector("#totalUser").textContent = userprogess.length;
     let lastSuccessScore = -1;
     if (errorssort < 1) {
         userprogess.sort((a, b) => b.total_point - a.total_point);
@@ -99,6 +141,9 @@ ${index + 1}
 ${user.name}
 </td>
 <td class="px-6 py-4">
+${Number(user.total_time).toFixed(2)}
+</td>
+<td class="px-6 py-4">
 ${user.total_point}
 </td>
 <td class="px-6 py-4 w-[50%]">
@@ -129,12 +174,26 @@ ${user.total_point}
 // // Cập nhật bảng mỗi giây
 // setInterval(updateTable, 1000);
 
-getResults();
-
 window.Echo.channel('result-live-score.' + examCode)
-    .listen('ResultLiveScoreEvent', function (data) {
+    .listen('ResultLiveScoreEvent', function (response) {
         // Xử lý dữ liệu nhận được tại đây
-        clearInterval(interval);
+
+        // if (response.flag == 'init') {
+        // let newUser = {
+        //     "user_id": response.data.id,
+        //     "name": response.data.name,
+        //     "total_time": 0,
+        //     "total_point": 0,
+        //     "errors": "0"
+        // }
+        // console.log(newUser);
+        console.log(response.data);
+        userprogess = response.data;
         errorssort = 0;
-        getResults();
+        updateTable();
+        // } else {
+        //     errorssort = 0;
+        // clearInterval(interval);
+        // getResults();
+        // }
     });

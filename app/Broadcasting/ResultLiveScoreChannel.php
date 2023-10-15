@@ -17,9 +17,9 @@ class ResultLiveScoreChannel
     /**
      * Authenticate the user's access to the channel.
      */
-    public function join($examCode, $examCodeClient): array|bool
+    public function join($code, $codeClient): array|bool
     {
         //
-        return $examCode === $examCodeClient;
+        return $code === $codeClient;
     }
 }
