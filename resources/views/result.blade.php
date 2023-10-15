@@ -167,6 +167,7 @@
 </div>
 <script>
     let getResultUrl = {{ env('APP_URL') . '/get-result/' }};
+    console.log(getResultUrl);
 </script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
