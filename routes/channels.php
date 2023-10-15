@@ -17,6 +17,4 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('test', function ($user) {
-    return true;
-});
+Broadcast::channel('result-live-score.{examCode}', \App\Broadcasting\ResultLiveScoreChannel::class);

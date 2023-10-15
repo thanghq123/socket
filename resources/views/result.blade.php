@@ -23,7 +23,7 @@
             <div class="bg-white w-[100%] float-left mt-[-10px]
             rounded-lg border border-gray-200
             hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200" style="cursor: pointer;">
-                <span class="py-2.5 font-bold float-left pl-5 pr-2 text-gray-900 focus:outline-none">
+                <span class="py-2.5 font-bold float-left pl-5 pr-2 text-gray-900 focus:outline-none" id="examCode">
                 PM2AC2EC</span>
                 <svg
                     class="w-5 h-5 float-left text-gray-800 mt-3 mr-2 hover:bg-gray-100 hover:text-blue-300 focus:z-10 focus:ring-4 focus:ring-gray-200"
@@ -74,7 +74,7 @@
                             <path
                                 d="M5 19h10v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2ZM5 7a5.008 5.008 0 0 1 4-4.9 3.988 3.988 0 1 0-3.9 5.859A4.974 4.974 0 0 1 5 7Zm5 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5-1h-.424a5.016 5.016 0 0 1-1.942 2.232A6.007 6.007 0 0 1 17 17h2a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5ZM5.424 9H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h2a6.007 6.007 0 0 1 4.366-5.768A5.016 5.016 0 0 1 5.424 9Z"/>
                         </svg>
-                        1 người chơi
+                        <span id="totalUser">1</span> người chơi
                     </div>
                 </th>
             </tr>
@@ -166,7 +166,7 @@
     </div>
 </div>
 <script>
-    let getResultUrl = '{{ route('get-result', ['code' => '2954SJNV']) }}';
+    let getResultUrl = {{ env('APP_URL') . '/get-result/' }};
 </script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>

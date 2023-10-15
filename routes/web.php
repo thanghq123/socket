@@ -45,21 +45,15 @@ Route::get('result', function () {
 });
 
 Route::get('get-result/{code}', function (Request $request, $code) {
-    $results = \App\Models\QuizExamResult::with('user')
-        ->select(['id', 'results', 'point', 'total_time', 'user_id'])
-        ->where('quiz_exam_id', 1)
-        ->orderBy('created_at', 'desc')
+    $data = \App\Models\TmpQuizResult::query()
+        ->selectRaw('tmp_quiz_results.user_id, users.name, SUM(time) as total_time, SUM(point) as total_point, SUM(case when point = 0 then 1 else 0 end) as errors')
+        ->join('users', 'users.id', '=', 'tmp_quiz_results.user_id')
+        ->where('code', $code)
+        ->groupBy('user_id')
         ->get();
 
-//    $data = \App\Models\TmpQuizResult::query()
-//        ->selectRaw('tmp_quiz_results.user_id, users.name, SUM(time) as total_time, SUM(point) as total_point')
-//        ->join('users', 'users.id', '=', 'tmp_quiz_results.user_id')
-//        ->where('code', $code)
-//        ->groupBy('user_id')
-//        ->get();
-
-//    return $data;
-    return $results;
+    return $data;
+//    return $results;
 })->name('get-result');
 
 Route::get('live-score', function () {

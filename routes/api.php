@@ -17,3 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('live-score', function (Request $request) {
+
+//    if (!empty($request->point_change)) {
+//        \App\Models\TmpQuizResult::query()->where('user_id', 24)->update(['point' => $request->point_change]);
+//    }
+
+    \event(new \App\Events\ResultLiveScoreEvent($request->code ?? ''));
+
+    return [
+        'code' => $request->code ?? '',
+        'point_change' => $request->point_change ?? '',
+    ];
+});

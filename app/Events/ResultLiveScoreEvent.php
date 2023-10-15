@@ -14,26 +14,26 @@ class ResultLiveScoreEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $changeStatus;
+    public $examCode;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($changeStatus)
+    public function __construct($examCode)
     {
         //
-        $this->changeStatus = $changeStatus;
+        $this->examCode = $examCode;
     }
 
     public function broadcastOn()
     {
-        return new Channel('result-live-score');
+        return new Channel('result-live-score.' . $this->examCode);
     }
 
     public function broadcastWith()
     {
         return [
-            'changeStatus' => $this->changeStatus,
+            'examCode' => $this->examCode,
         ];
     }
 }
