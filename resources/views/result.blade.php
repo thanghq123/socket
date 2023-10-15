@@ -166,7 +166,7 @@
     </div>
 </div>
 <script>
-    let getResultUrl = {{ env('APP_URL') . '/get-result/' }};
+    let getResultUrl = '{{ env('APP_URL') . '/get-result/' }}';
     console.log(getResultUrl);
 </script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
